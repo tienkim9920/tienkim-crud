@@ -168,6 +168,45 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+
+/**
+ * @swagger
+ * /blogs/pagination:
+ *   get:
+ *     summary: get the blog by query limit & page
+ *     tags: [Blogs]
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: string
+ *         required: true
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: The list of the blogs
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/blogs'
+ */
+router.get('/pagination', async (req, res) => {
+    try {
+        const { limit, page } = req.query;
+        let blogs = await Blog.find().skip((page - 1) * limit).limit(limit);
+        res.status(200).json(blogs);
+    } catch (error) {
+        res.json(error);
+    }
+})
+
+
 /**
  * @swagger
  * /blogs/{id}:
