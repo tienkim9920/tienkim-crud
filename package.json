@@ -1,11 +1,11 @@
 {
-  "name": "server-image",
+  "name": "tienkim-crud",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "CI=false && npm run build",
+    "build": "CI=false",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
