@@ -133,10 +133,10 @@ router.patch('/', async (req, res) => {
                 blog.phone = phone;
             }
             blog.save();
-            res.status(200).json("Update Successfully");
+            res.status(200).json(true);
         }
     } catch (error) {
-        res.status(404).json(error);
+        res.status(404).json(false);
     }
 })
 
@@ -162,9 +162,9 @@ router.patch('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         await Blog.deleteOne({ _id: req.params.id });
-        res.status(200).json("Delete Successfully");
+        res.status(200).json(true);
     } catch (error) {
-        res.status(404).json(error);
+        res.status(404).json(false);
     }
 })
 
